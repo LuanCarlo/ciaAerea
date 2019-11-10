@@ -4,73 +4,57 @@
 
     <div class="card border">
         <div class="card-body">
-            <h5 class="card-title">Cadastro de Passagens</h5>
+            <form action="/servico/{{$passagem->id}}" method="POST">
+                @csrf
+                <div class="form-group">
 
-            <table class="table table-ordered table-hover" id="tabelaPassagens">
-                <thead>
-                <tr>
-                    <th>Nome</th>
-                    <th>Quantidade</th>
-                    <th>Preço</th>
-                    <th>Departamento</th>
-                </tr>
-                </thead>
-                <tbody>
-
-                </tbody>
-            </table>
-
-        </div>
-        <div class="card-footer">
-            <button class="btn btn-sm btn-primary" role="button" onClick="novaPassagem()">Nova Passagem</button>
-        </div>
-    </div>
-
-    <div class="modal" tabindex="-1" role="dialog" id="dlgPassagens">
-        <div class="modal-dialog" role="document">
-            <div class="modal-content">
-                <form class="form-horizontal" id="formPassagem">
-                    <div class="modal-header">
-                        <h5 class="modal-title">Nova Passagem</h5>
+                    <div class="form-group">
+                        <label for="descricaoPassagem" >Tipo</label>
+                        <select name="tipoPassagem"  class="form-control" value="{{$passagem->tipo}}">
+                            <option value="1">Ida e volta</option>
+                            <option value="2">Ida</option>
+                        </select>
                     </div>
-                    <div class="modal-body">
 
-                        <input type="hidden" id="id" class="form-control">
-                        <div class="form-group">
-                            <label for="destinoPassagem" class="control-label">Destino</label>
-                            <div class="input-group">
-                                <input type="text" class="form-control" id="destinoPassagem" placeholder="Destino">
-                            </div>
-                        </div>
+                    <div class="form-group">
+                        <label for="classePassagem" >Classe</label>
+                        <select name="classePassagem"  class="form-control" value="{{$passagem->classe}}">
+                            <option value="1">Econômica</option>
+                            <option value="2">Primeira Classe</option>
+                        </select>
+                    </div>
 
-                        <div class="form-group">
-                            <label for="precoPassagem" class="control-label">Preço</label>
-                            <div class="input-group">
-                                <input type="text" class="form-control" id="precoPassagem" placeholder="Preço da passagem">
-                            </div>
-                        </div>
+                    <div class="form-group">
+                        <label for="assentoPassagem">Assento</label>
+                        <input type="text" class="form-control" name="assentoPassagem" id="assentoPassagem"
+                               value="{{$passagem->assento}}" placeholder="Assento">
+                    </div>
 
-                        <div class="form-group">
-                            <label for="quantidadePassagem" class="control-label">Quantidade</label>
-                            <div class="input-group">
-                                <input type="number" class="form-control" id="quantidadePassagem" placeholder="Quantidade de passagem">
-                            </div>
-                        </div>
+                    <div class="form-group">
+                        <label for="portaoPassagem">Portão do Embarque</label>
+                        <input type="text" class="form-control" name="portaoPassagem" id="portaoPassagem"
+                               value="{{$passagem->portao}}" placeholder="Portão do Embarque">
+                    </div>
 
-                        <div class="form-group">
-                            <label for="categoriaPassagem" class="control-label">Categoria</label>
-                            <div class="input-group">
-                                <select class="form-control" id="categoriaPassagem" >
-                                </select>
-                            </div>
+                    <div class="form-group">
+                        <label for="precoPassagem">Preço</label>
+                        <input type="text" class="form-control" name="precoPassagem" id="precoPassagem"
+                               value="{{$passagem->preco}}" placeholder="Preço">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="vooPassagem" class="control-label">Voo</label>
+                        <div class="input-group">
+                            <select class="form-control" id="vooPassagem" name="vooPassagem"
+                                    value="{{$passagem->preco}}"
+                            >
+                            </select>
                         </div>
                     </div>
-                    <div class="modal-footer">
-                        <button type="submit" class="btn btn-primary">Salvar</button>
-                        <button type="cancel" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
-                    </div>
-                </form>
-            </div>
+                    <button type="submit" class="btn btn-primary btn-sm">Salvar</button>
+                    <a type="cancel" class="btn btn-danger btn-sm" href="/passagem" >cancelar</a>
+                </div>
+            </form>
         </div>
     </div>
 
@@ -101,7 +85,17 @@
                 for(i=0;i<data.length;i++) {
                     opcao = '<option value ="' + data[i].id + '">' +
                         data[i].nome + '</option>';
-                    $('#categoriaPassagem').append(opcao);
+                    $('#servicoPassagem').append(opcao);
+                }
+            });
+        }
+
+        function carregarVoo() {
+            $.getJSON('/api/voo', function(data) {
+                for(i=0;i<data.length;i++) {
+                    opcao = '<option value ="' + data[i].id + '">' +
+                        data[i].destino + " " + data[i].dt_voo + '</option>';
+                    $('#vooPassagem').append(opcao);
                 }
             });
         }
@@ -119,18 +113,6 @@
                 "</td>" +
                 "</tr>";
             return linha;
-        }
-
-        function editar(id) {
-            $.getJSON('/api/passagem/'+id, function(data) {
-                console.log(data);
-                $('#id').val(data.id);
-                $('#nomePassagem').val(data.nome);
-                $('#precoPassagem').val(data.preco);
-                $('#quantidadePassagem').val(data.estoque);
-                $('#categoriaPassagem').val(data.categoria_id);
-                $('#dlgPassagens').modal('show');
-            });
         }
 
         function remover(id) {
@@ -167,7 +149,7 @@
                 nome: $("#nomePassagem").val(),
                 preco: $("#precoPassagem").val(),
                 estoque: $("#quantidadePassagem").val(),
-                categoria_id: $("#categoriaPassagem").val()
+                categoria_id: $("#servicoPassagem").val()
             };
             $.post("/api/passagem", prod, function(data) {
                 passagem = JSON.parse(data);
@@ -182,7 +164,7 @@
                 nome: $("#nomePassagem").val(),
                 preco: $("#precoPassagem").val(),
                 estoque: $("#quantidadePassagem").val(),
-                categoria_id: $("#categoriaPassagem").val()
+                categoria_id: $("#servicoPassagem").val()
             };
             $.ajax({
                 type: "PUT",
@@ -222,6 +204,7 @@
         $(function(){
             carregarServicos();
             carregarPassagens();
+            carregarVoo();
         })
 
     </script>

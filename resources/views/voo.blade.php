@@ -23,8 +23,14 @@
                             <td>{{$voo->destino}}</td>
                             <td>{{$voo->dt_voo}}</td>
                             <td>
-                                <a href="/voo/editar/{{$voo->id}}" class="btn btn-sm btn-primary">Editar</a>
-                                <a href="/voo/apagar/{{$voo->id}}" class="btn btn-sm btn-danger">Apagar</a>
+                                @auth
+                                    @if(Auth::user()->tipo == 1 || Auth::user()->id == $voo->cliente_id)
+                                        <a href="/voo/editar/{{$voo->id}}" class="btn btn-sm btn-primary">Editar</a>
+                                    @endif
+                                    @if(Auth::user()->tipo == 1)
+                                        <a href="/voo/apagar/{{$voo->id}}" class="btn btn-sm btn-danger">Apagar</a>
+                                    @endif
+                                @endauth
                             </td>
                             <td>
                                 <a href="/passagem/novo" class="btn btn-sm btn-primary">+</a>
@@ -35,9 +41,14 @@
                 </table>
             @endif
         </div>
-        <div class="card-footer">
-            <a href="/voo/novo" class="btn btn-sm btn-primary" role="button">Novo Voo</a>
-        </div>
+
+        @auth
+            @if(Auth::user()->tipo == 1)
+            <div class="card-footer">
+                <a href="/voo/novo" class="btn btn-sm btn-primary" role="button">Novo Voo</a>
+            </div>
+            @endif
+        @endauth
     </div>
 
 @endsection

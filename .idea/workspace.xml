@@ -105,11 +105,12 @@
   <component name="ProjectId" id="1TO7cLL0ZeDF8EO42Bi2bpkwB1u" />
   <component name="PropertiesComponent">
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/../basico-login" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/database/migrations" />
     <property name="nodejs_package_manager_path" value="npm" />
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\xampp\htdocs\ciaAerea\database\migrations" />
       <recent name="C:\xampp\htdocs\ciaAerea\resources\views" />
       <recent name="C:\xampp\htdocs\ciaAerea\resources\views\layout" />
       <recent name="C:\xampp\htdocs\ciaAerea\resources\js" />
@@ -147,7 +148,7 @@
       <option name="presentableId" value="Default" />
       <updated>1573319365442</updated>
       <workItem from="1573319366598" duration="22860000" />
-      <workItem from="1573343394186" duration="5964000" />
+      <workItem from="1573343394186" duration="18679000" />
     </task>
     <servers />
   </component>

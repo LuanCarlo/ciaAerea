@@ -9,7 +9,7 @@
                 <div class="form-group">
                     <div class="form-group">
                         <label for="nomeCliente">Nome Completo</label>
-                        <input type="text" class="form-control" name="nomeCliente" id="nomeCliente" value="{{$cliente->nome}}"
+                        <input type="text" class="form-control" name="nomeCliente" id="nomeCliente" value="{{$cliente->name}}"
                                placeholder="Nome">
                     </div>
                     <div class="form-group">
@@ -32,6 +32,21 @@
                         <input type="text" class="form-control" name="telefoneCliente" id="telefoneCliente" value="{{$cliente->telefone}}"
                                placeholder="Telefone">
                     </div>
+
+                    <div class="form-group">
+                        <label for="senhaCliente">Senha</label>
+                        <input type="password" class="form-control" name="senhaCliente" id="senhaCliente" value="{{$cliente->password}}"
+                               placeholder="Senha">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="senhaCliente">Tipo</label>
+                        <select name="tipoCliente"  class="form-control" value="{{$cliente->tipo}}">
+                            <option value="1">Admin</option>
+                            <option value="2">Usuário</option>
+                        </select>
+                    </div>
+
                 </div>
                 <button type="submit" class="btn btn-primary btn-sm">Salvar</button>
                 <button type="cancel" class="btn btn-danger btn-sm">Cancel</button>

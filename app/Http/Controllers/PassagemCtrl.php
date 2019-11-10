@@ -4,9 +4,11 @@ namespace App\Http\Controllers;
 
 use App\Passagem;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class PassagemCtrl extends Controller
 {
+
     public function indexView()
     {
         return view('passagem');
@@ -14,8 +16,8 @@ class PassagemCtrl extends Controller
 
     public function index()
     {
-        $prods = Passagem::all();
-        return $prods->toJson();
+        $passagens = Passagem::all();
+        return view('passagem', compact('passagens'));
     }
 
     /**
@@ -37,16 +39,24 @@ class PassagemCtrl extends Controller
      */
     public function store(Request $request)
     {
-        $prod = new Passagem();
-        $prod->tipo = $request->input('tipoPassagem');
-        $prod->classe = $request->input('classePassagem');
-        $prod->assento = $request->input('assentoPassagem');
-        $prod->portao = $request->input('portaoPassagem');
-        $prod->preco = $request->input('precoPassagem');
-        $prod->voo_id = $request->input('vooPassagem');
-       // $prod->cliente_id = $request->input('clientePassagem');
-        $prod->save();
-        return json_encode($prod);
+
+        if (Auth::check()) {
+
+            $user = Auth::user();
+
+            $passagem = new Passagem();
+            $passagem->tipo = $request->input('tipoPassagem');
+            $passagem->classe = $request->input('classePassagem');
+            $passagem->assento = $request->input('assentoPassagem');
+            $passagem->portao = $request->input('portaoPassagem');
+            $passagem->preco = $request->input('precoPassagem');
+            $passagem->voo_id = $request->input('vooPassagem');
+            $passagem->cliente_id = $user->id;
+            $passagem->save();
+            return redirect('/passagem');
+        } else {
+            return redirect('/home');
+        }
     }
 
     /**
@@ -57,9 +67,9 @@ class PassagemCtrl extends Controller
      */
     public function show($id)
     {
-        $prod = Passagem::find($id);
-        if (isset($prod)) {
-            return json_encode($prod);
+        $passagem = Passagem::find($id);
+        if (isset($passagem)) {
+            return json_encode($passagem);
         }
         return response('Passagem não encontrada', 404);
     }
@@ -72,7 +82,12 @@ class PassagemCtrl extends Controller
      */
     public function edit($id)
     {
-        //
+        $passagem = Passagem::find($id);
+        if(isset($passagem)) {
+            return view('editarpassagem',compact('passagem'));
+        } else {
+            return redirect('/passagem');
+        }
     }
 
     /**
@@ -84,14 +99,16 @@ class PassagemCtrl extends Controller
      */
     public function update(Request $request, $id)
     {
-        $prod = Passagem::find($id);
-        if (isset($prod)) {
-            $prod->nome = $request->input('nome');
-            $prod->preco = $request->input('preco');
-            $prod->estoque = $request->input('estoque');
-            $prod->categoria_id = $request->input('categoria_id');
-            $prod->save();
-            return json_encode($prod);
+        $passagem = Passagem::find($id);
+        if (isset($passagem)) {
+            $passagem->tipo = $request->input('tipoPassagem');
+            $passagem->classe = $request->input('classePassagem');
+            $passagem->assento = $request->input('assentoPassagem');
+            $passagem->portao = $request->input('portaoPassagem');
+            $passagem->preco = $request->input('precoPassagem');
+            $passagem->voo_id = $request->input('vooPassagem');
+            $passagem->save();
+            return redirect('/passagem');
         }
         return response('Passagem não encontrada', 404);
     }
@@ -104,9 +121,9 @@ class PassagemCtrl extends Controller
      */
     public function destroy($id)
     {
-        $prod = Passagem::find($id);
-        if (isset($prod)) {
-            $prod->delete();
+        $passagem = Passagem::find($id);
+        if (isset($passagem)) {
+            $passagem->delete();
             return response('OK', 200);
         }
         return response('Passagem não encontrado', 404);

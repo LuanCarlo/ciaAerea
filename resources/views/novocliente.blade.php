@@ -25,6 +25,19 @@
                     <label for="telefoneCliente">Telefone</label>
                     <input type="text" class="form-control" name="telefoneCliente" id="telefoneCliente" placeholder="Telefone">
                 </div>
+                <div class="form-group">
+                    <label for="senhaCliente">Senha</label>
+                    <input type="password" class="form-control" name="senhaCliente" id="senhaCliente" placeholder="Senha">
+                </div>
+
+                <div class="form-group">
+                    <label for="senhaCliente">Tipo</label>
+                    <select name="tipoCliente"  class="form-control">
+                        <option value="1">Admin</option>
+                        <option value="2">Usuário</option>
+                    </select>
+                </div>
+
                 <button type="submit" class="btn btn-primary btn-sm">Salvar</button>
                 <a type="cancel" class="btn btn-danger btn-sm" href="/cliente">Cancelar</a>
             </form>

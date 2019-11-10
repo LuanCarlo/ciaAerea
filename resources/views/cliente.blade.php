@@ -18,7 +18,7 @@
                     @foreach($clientes as $cliente)
                         <tr>
                             <td>{{$cliente->id}}</td>
-                            <td>{{$cliente->nome}}</td>
+                            <td>{{$cliente->name}}</td>
                             <td>
                                 <a href="/cliente/editar/{{$cliente->id}}" class="btn btn-sm btn-primary">Editar</a>
                                 <a href="/cliente/apagar/{{$cliente->id}}" class="btn btn-sm btn-danger" href="/cliente">Apagar</a>

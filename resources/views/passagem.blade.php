@@ -9,20 +9,37 @@
             <table class="table table-ordered table-hover" id="tabelaPassagens">
                 <thead>
                 <tr>
-                    <th>Nome</th>
-                    <th>Quantidade</th>
+                    <th>Código</th>
+                    <th>assento</th>
                     <th>Preço</th>
-                    <th>Departamento</th>
+                    <th>Voo</th>
                 </tr>
                 </thead>
                 <tbody>
-
+                @foreach($passagens as $passagem)
+                    <tr>
+                        <td>{{$passagem->id}}</td>
+                        <td>{{$passagem->assento}}</td>
+                        <td>{{$passagem->preco}}</td>
+                        <td>{{$passagem->voo_id}}</td>
+                        <td>
+                            @auth
+                                @if(Auth::user()->tipo == 1 || Auth::user()->id == $passagem->cliente_id)
+                                    <a href="/passagem/editar/{{$passagem->id}}" class="btn btn-sm btn-primary">Editar</a>
+                                @endif
+                                @if(Auth::user()->tipo == 1)
+                                    <a href="/passagem/apagar/{{$passagem->id}}" class="btn btn-sm btn-danger">Apagar</a>
+                                @endif
+                            @endauth
+                        </td>
+                    </tr>
+                @endforeach
                 </tbody>
             </table>
 
         </div>
         <div class="card-footer">
-            <button class="btn btn-sm btn-primary" role="button" onClick="novaPassagem()">Nova Passagem</button>
+            <a href="/passagem/novo" class="btn btn-sm btn-primary" role="button">Nova Passagem</a>
         </div>
     </div>
 
@@ -60,154 +77,4 @@
     </div>
 
 
-@endsection
-
-
-
-@section('javascript')
-    <script type="text/javascript">
-
-        $.ajaxSetup({
-            headers: {
-                'X-CSRF-TOKEN': "{{ csrf_token() }}"
-            }
-        });
-
-        function novaPassagem() {
-            $('#id').val('');
-            $('#nomePassagem').val('');
-            $('#precoPassagem').val('');
-            $('#quantidadePassagem').val('');
-            $('#dlgPassagens').modal('show');
-        }
-
-        function carregarServicos() {
-            $.getJSON('/api/servico', function(data) {
-                for(i=0;i<data.length;i++) {
-                    opcao = '<option value ="' + data[i].id + '">' +
-                        data[i].nome + '</option>';
-                    $('#categoriaPassagem').append(opcao);
-                }
-            });
-        }
-
-        function montarLinha(p) {
-            var linha = "<tr>" +
-                "<td>" + p.id + "</td>" +
-                "<td>" + p.nome + "</td>" +
-                "<td>" + p.estoque + "</td>" +
-                "<td>" + p.preco + "</td>" +
-                "<td>" + p.categoria_id + "</td>" +
-                "<td>" +
-                '<button class="btn btn-sm btn-primary" onclick="editar(' + p.id + ')"> Editar </button> ' +
-                '<button class="btn btn-sm btn-danger" onclick="remover(' + p.id + ')"> Apagar </button> ' +
-                "</td>" +
-                "</tr>";
-            return linha;
-        }
-
-        function editar(id) {
-            $.getJSON('/api/passagem/'+id, function(data) {
-                console.log(data);
-                $('#id').val(data.id);
-                $('#nomePassagem').val(data.nome);
-                $('#precoPassagem').val(data.preco);
-                $('#quantidadePassagem').val(data.estoque);
-                $('#categoriaPassagem').val(data.categoria_id);
-                $('#dlgPassagens').modal('show');
-            });
-        }
-
-        function remover(id) {
-            $.ajax({
-                type: "DELETE",
-                url: "/api/passagem/" + id,
-                context: this,
-                success: function() {
-                    console.log('Apagou OK');
-                    linhas = $("#tabelaPassagens>tbody>tr");
-                    e = linhas.filter( function(i, elemento) {
-                        return elemento.cells[0].textContent == id;
-                    });
-                    if (e)
-                        e.remove();
-                },
-                error: function(error) {
-                    console.log(error);
-                }
-            });
-        }
-
-        function carregarPassagens() {
-            $.getJSON('/api/passagem', function(passagens) {
-                for(i=0;i<passagens.length;i++) {
-                    linha = montarLinha(passagens[i]);
-                    $('#tabelaPassagens>tbody').append(linha);
-                }
-            });
-        }
-
-        function criarPassagem() {
-            prod = {
-                nome: $("#nomePassagem").val(),
-                preco: $("#precoPassagem").val(),
-                estoque: $("#quantidadePassagem").val(),
-                categoria_id: $("#categoriaPassagem").val()
-            };
-            $.post("/api/passagem", prod, function(data) {
-                passagem = JSON.parse(data);
-                linha = montarLinha(passagem);
-                $('#tabelaPassagens>tbody').append(linha);
-            });
-        }
-
-        function salvarPassagem() {
-            prod = {
-                id : $("#id").val(),
-                nome: $("#nomePassagem").val(),
-                preco: $("#precoPassagem").val(),
-                estoque: $("#quantidadePassagem").val(),
-                categoria_id: $("#categoriaPassagem").val()
-            };
-            $.ajax({
-                type: "PUT",
-                url: "/api/passagem/" + prod.id,
-                context: this,
-                data: prod,
-                success: function(data) {
-                    prod = JSON.parse(data);
-                    linhas = $("#tabelaPassagens>tbody>tr");
-                    e = linhas.filter( function(i, e) {
-                        return ( e.cells[0].textContent == prod.id );
-                    });
-                    if (e) {
-                        e[0].cells[0].textContent = prod.id;
-                        e[0].cells[1].textContent = prod.nome;
-                        e[0].cells[2].textContent = prod.estoque;
-                        e[0].cells[3].textContent = prod.preco;
-                        e[0].cells[4].textContent = prod.categoria_id;
-                    }
-                },
-                error: function(error) {
-                    console.log(error);
-                }
-            });
-        }
-
-        $("#formPassagem").submit( function(event){
-            event.preventDefault();
-            if ($("#id").val() != '')
-                salvarPassagem();
-            else
-                criarPassagem();
-
-            $("#dlgPassagens").modal('hide');
-        });
-
-        $(function(){
-            carregarServicos();
-            carregarPassagens();
-        })
-
-    </script>
 @endsection

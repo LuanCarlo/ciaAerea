@@ -87,7 +87,8 @@ class ServicoCtrl extends Controller
             $servico->descricao = $request->input('descricaoServico');
             $servico->save();
         }
-        return redirect('/servico');    }
+        return redirect('/servico');
+    }
 
     /**
      * Remove the specified resource from storage.

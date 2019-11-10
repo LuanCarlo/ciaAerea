@@ -39,11 +39,13 @@ class ClienteCtrl extends Controller
     public function store(Request $request)
     {
         $cliente = new Cliente();
-        $cliente->nome = $request->input('nomeCliente');
+        $cliente->name = $request->input('nomeCliente');
         $cliente->cpf = $request->input('cpfCliente');
         $cliente->dt_nascimento = $request->input('dtnscCliente');
         $cliente->email = $request->input('emailCliente');
+        $cliente->password = $request->input('senhaCliente');
         $cliente->telefone = $request->input('telefoneCliente');
+        $cliente->tipo = $request->input('tipoCliente');
 
         $cliente->save();
         return redirect('/cliente');
@@ -85,15 +87,18 @@ class ClienteCtrl extends Controller
      */
     public function update(Request $request, $id)
     {
-
         $cliente = Cliente::find($id);
 
-        if (isset($prod)) {
-            $cliente->nome = $request->input('nomeCliente');
+        if (isset($cliente)) {
+            $cliente->name = $request->input('nomeCliente');
             $cliente->cpf = $request->input('cpfCliente');
             $cliente->dt_nascimento = $request->input('dtnscCliente');
             $cliente->email = $request->input('emailCliente');
+            $cliente->password = $request->input('senhaCliente');
             $cliente->telefone = $request->input('telefoneCliente');
+            $cliente->tipo = $request->input('tipoCliente');
+
+
             $cliente->save();
         }
         return redirect('/cliente');
