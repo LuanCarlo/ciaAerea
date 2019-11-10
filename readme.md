@@ -24,3 +24,26 @@ Logar com o usuário admin, admin -> para ter acesso a todas as funcionalidades 
 ### Observação 
 
 As classes relacionadas aos usuários; serviços (Bagagem e Carga Viva); voo e passagem estão na pasta app/http/controllers.
+
+----------------------------------------------------------------------------------------------------------------------------------------
+
+### Imagens 
+                        Página Inicial
+                    
+<img src="https://github.com/LuanCarlo/ciaAerea/blob/master/public/img/Foto1.jpeg"> 
+
+                        Cadastro de Passagem 
+                        
+<img src="https://github.com/LuanCarlo/ciaAerea/blob/master/public/img/Foto2.jpeg">
+
+                        Login/Register
+                        
+<img src="https://github.com/LuanCarlo/ciaAerea/blob/master/public/img/Foto3.jpeg">
+
+                        Cadastros de Voos
+
+<img src="https://github.com/LuanCarlo/ciaAerea/blob/master/public/img/Foto4.jpeg">
+
+                        Com o usuário logado é possivel alterar dados e adicionar serviços
+
+<img src="https://github.com/LuanCarlo/ciaAerea/blob/master/public/img/Foto5.jpeg">
