@@ -18,6 +18,7 @@ Primeiramente é necessário instalar o Laravel 5.8 no localhost ou servidor;
 Criar uma Database com o nome "cia_aerea" no formato utf8_general_ci;
 Rodar o comando no terminal dentro da pasta do projeto **php artisan migrate:fresh**, após isso inserir o comando **php artisan serve**; 
 Logar com o usuário admin, admin -> para ter acesso a todas as funcionalidades ou registrar um novo usuário para ter acesso de usuário comum
+
 ----------------------------------------------------------------------------------------------------------------------------------------
 
 ### Observação 
