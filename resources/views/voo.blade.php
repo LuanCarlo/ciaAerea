@@ -33,7 +33,7 @@
                                 @endauth
                             </td>
                             <td>
-                                <a href="/passagem/novo" class="btn btn-sm btn-primary">+</a>
+                                <a href="/passagem/novo" class="btn btn-sm btn-primary">Comprar passagem</a>
                             </td>
                         </tr>
                     @endforeach

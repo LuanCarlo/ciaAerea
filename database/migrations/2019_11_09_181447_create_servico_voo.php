@@ -15,7 +15,7 @@ class CreateServicoVoo extends Migration
     {
         Schema::create('servicos_voos', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('local');
+            $table->string('descricao');
             $table->integer('servico_id')->unsigned();
             $table->integer('passagem_id')->unsigned();
             $table->foreign('servico_id')->references('id')->on('servicos');

@@ -8,6 +8,8 @@
                 @csrf
                 <div class="form-group">
 
+                    <input type="hidden" id="idpassagemServico" name="idpassagemServico" value="{{$passagem->id}}">
+
                     <div class="form-group">
                         <label for="descricaoPassagem" >Tipo</label>
                         <select name="tipoPassagem"  class="form-control" value="{{$passagem->tipo}}">
@@ -53,10 +55,49 @@
                     </div>
                     <button type="submit" class="btn btn-primary btn-sm">Salvar</button>
                     <a type="cancel" class="btn btn-danger btn-sm" href="/passagem" >cancelar</a>
+
+                    <button type="button" class="btn btn-secondary btn-sm" onClick="novoServico()">Adicionar Serviço(s)</button>
+
                 </div>
             </form>
         </div>
     </div>
+
+    <div class="modal" tabindex="-1" role="dialog" id="dlgServico">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <form class="form-horizontal" id="formServico">
+                    <div class="modal-header">
+                        <h5 class="modal-title">Novo Serviço</h5>
+                    </div>
+                    <div class="modal-body">
+
+                        <input type="hidden" id="idpassagemServico" name="idpassagemServico" value="{{$passagem->id}}">
+                        <input type="hidden" id="id" class="form-control">
+                        <div class="form-group">
+                            <label for="descricaoServico" class="control-label">Descrição</label>
+                            <div class="input-group">
+                                <input type="text" class="form-control" id="descricaoServico"  nome="descricaoServico" placeholder="Descrição">
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="servicoPassagem" class="control-label">Serviço</label>
+                            <div class="input-group">
+                                <select class="form-control" id="idservicoServico" nome="idservicoServico">
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="submit" class="btn btn-primary">Salvar</button>
+                        <button type="cancel" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
 
 
 @endsection
@@ -72,12 +113,15 @@
             }
         });
 
-        function novaPassagem() {
+        var elemento = document.getElementById('idpassagemServico');
+        var passagemId = elemento.value;
+
+        function novoServico() {
             $('#id').val('');
-            $('#nomePassagem').val('');
-            $('#precoPassagem').val('');
-            $('#quantidadePassagem').val('');
-            $('#dlgPassagens').modal('show');
+            $('#descricaoServico').val('');
+            $('#idpassagemServico').val('');
+            $('#idservicoServico').val('');
+            $('#dlgServico').modal('show');
         }
 
         function carregarServicos() {
@@ -85,7 +129,7 @@
                 for(i=0;i<data.length;i++) {
                     opcao = '<option value ="' + data[i].id + '">' +
                         data[i].nome + '</option>';
-                    $('#servicoPassagem').append(opcao);
+                    $('#idservicoServico').append(opcao);
                 }
             });
         }
@@ -144,31 +188,30 @@
             });
         }
 
-        function criarPassagem() {
+        function criarServico() {
             prod = {
-                nome: $("#nomePassagem").val(),
-                preco: $("#precoPassagem").val(),
-                estoque: $("#quantidadePassagem").val(),
-                categoria_id: $("#servicoPassagem").val()
+                descricao: $("#descricaoServico").val(),
+                servico_id: $("#idservicoServico").val(),
+                passagem_id: passagemId
             };
-            $.post("/api/passagem", prod, function(data) {
+            $.post("/api/servicovoo", prod, function(data) {
                 passagem = JSON.parse(data);
                 linha = montarLinha(passagem);
                 $('#tabelaPassagens>tbody').append(linha);
             });
         }
 
-        function salvarPassagem() {
+        function salvarServico() {
             prod = {
                 id : $("#id").val(),
-                nome: $("#nomePassagem").val(),
-                preco: $("#precoPassagem").val(),
-                estoque: $("#quantidadePassagem").val(),
-                categoria_id: $("#servicoPassagem").val()
+                descricao: $("#descricaoServico").val(),
+                servico_id: $("#idservicoServico").val(),
+                passagem_id: passagemId
             };
+            alert(prod);
             $.ajax({
                 type: "PUT",
-                url: "/api/passagem/" + prod.id,
+                url: "/api/servicovoo" + prod.id,
                 context: this,
                 data: prod,
                 success: function(data) {
@@ -191,14 +234,14 @@
             });
         }
 
-        $("#formPassagem").submit( function(event){
+        $("#formServico").submit( function(event){
             event.preventDefault();
             if ($("#id").val() != '')
-                salvarPassagem();
+                salvarServico();
             else
-                criarPassagem();
+                criarServico();
 
-            $("#dlgPassagens").modal('hide');
+            $("#dlgServico").modal('hide');
         });
 
         $(function(){

@@ -19,4 +19,6 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 
 Route::get('/servico', 'ServicoCtrl@indexJson');
 Route::get('/voo', 'VooCtrl@indexJson');
+//Route::get('/servicovoo', 'ServicoVooCtrl@indexJson');
+Route::resource('/servicovoo', 'ServicoVooCtrl');
 Route::resource('/passagem', 'PassagemCtrl');

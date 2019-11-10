@@ -40,6 +40,8 @@ Route::post('/voo/save', 'VooCtrl@store');
 Route::get('/voo/apagar/{id}', 'VooCtrl@destroy');
 Route::get('/voo/editar/{id}', 'VooCtrl@edit');
 Route::post('/voo/{id}', 'VooCtrl@update');
+Route::get('/servicovoo', 'ServicoVooCtrl@indexView');
+
 
 
 

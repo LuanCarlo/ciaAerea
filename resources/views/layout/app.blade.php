@@ -8,6 +8,7 @@
     <style>
         body {
             padding: 20px;
+            background-image: url("{{ asset('img/fundo.png') }}");
         }
 
         .navbar {

@@ -105,18 +105,21 @@
   <component name="ProjectId" id="1TO7cLL0ZeDF8EO42Bi2bpkwB1u" />
   <component name="PropertiesComponent">
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/database/migrations" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../cadastro-produtos" />
     <property name="nodejs_package_manager_path" value="npm" />
   </component>
   <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\xampp\htdocs\ciaAerea\public\img" />
+      <recent name="C:\xampp\htdocs\ciaAerea\resources\sass" />
+      <recent name="C:\xampp\htdocs\ciaAerea\resources\views" />
+    </key>
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\xampp\htdocs\ciaAerea\public\img" />
+      <recent name="C:\xampp\htdocs\ciaAerea\resources\views\assets\img" />
       <recent name="C:\xampp\htdocs\ciaAerea\database\migrations" />
       <recent name="C:\xampp\htdocs\ciaAerea\resources\views" />
       <recent name="C:\xampp\htdocs\ciaAerea\resources\views\layout" />
-      <recent name="C:\xampp\htdocs\ciaAerea\resources\js" />
-    </key>
-    <key name="MoveFile.RECENT_KEYS">
-      <recent name="C:\xampp\htdocs\ciaAerea\resources\views" />
     </key>
   </component>
   <component name="RunDashboard">
@@ -137,6 +140,9 @@
       <method v="2" />
     </configuration>
   </component>
+  <component name="ServiceViewManager">
+    <option name="showServicesTree" value="false" />
+  </component>
   <component name="SvnConfiguration">
     <configuration />
   </component>
@@ -148,7 +154,8 @@
       <option name="presentableId" value="Default" />
       <updated>1573319365442</updated>
       <workItem from="1573319366598" duration="22860000" />
-      <workItem from="1573343394186" duration="18679000" />
+      <workItem from="1573343394186" duration="18970000" />
+      <workItem from="1573373963023" duration="22196000" />
     </task>
     <servers />
   </component>
@@ -160,7 +167,9 @@
       <map>
         <entry key="MAIN">
           <value>
-            <State />
+            <State>
+              <option name="COLUMN_ORDER" />
+            </State>
           </value>
         </entry>
       </map>
