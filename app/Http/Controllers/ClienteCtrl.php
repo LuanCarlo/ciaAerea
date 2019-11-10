@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Cliente;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Hash;
 
 class ClienteCtrl extends Controller
 {
@@ -43,7 +44,7 @@ class ClienteCtrl extends Controller
         $cliente->cpf = $request->input('cpfCliente');
         $cliente->dt_nascimento = $request->input('dtnscCliente');
         $cliente->email = $request->input('emailCliente');
-        $cliente->password = $request->input('senhaCliente');
+        $cliente->password = Hash::make($request->input('senhaCliente'));
         $cliente->telefone = $request->input('telefoneCliente');
         $cliente->tipo = $request->input('tipoCliente');
 
@@ -94,7 +95,11 @@ class ClienteCtrl extends Controller
             $cliente->cpf = $request->input('cpfCliente');
             $cliente->dt_nascimento = $request->input('dtnscCliente');
             $cliente->email = $request->input('emailCliente');
-            $cliente->password = $request->input('senhaCliente');
+
+            if ($cliente->password != $request->input('senhaCliente')) {
+                $cliente->password = $request->input('senhaCliente');
+            }
+
             $cliente->telefone = $request->input('telefoneCliente');
             $cliente->tipo = $request->input('tipoCliente');
 
