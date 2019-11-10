@@ -105,7 +105,7 @@
   <component name="ProjectId" id="1TO7cLL0ZeDF8EO42Bi2bpkwB1u" />
   <component name="PropertiesComponent">
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/../cadastro-produtos" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/public/img" />
     <property name="nodejs_package_manager_path" value="npm" />
   </component>
   <component name="RecentsManager">
@@ -155,7 +155,7 @@
       <updated>1573319365442</updated>
       <workItem from="1573319366598" duration="22860000" />
       <workItem from="1573343394186" duration="18970000" />
-      <workItem from="1573373963023" duration="23677000" />
+      <workItem from="1573373963023" duration="24979000" />
     </task>
     <servers />
   </component>
