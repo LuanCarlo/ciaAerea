@@ -7,21 +7,20 @@
             <div class="card-deck">
                 <div class="card border border-primary">
                     <div class="card-body">
-                        <h5 class="card-title">Cadastro de produtos</h5>
+                        <h5 class="card-title">Cadastre em nosso Serviço</h5>
                         <p class="card=text">
-                            Aqui você cadastra todos os seus produtos.
-                            Só não se esqueça de cadastrar previamente as categorias
+                            Aqui ao se cadastrar, terá acesso a todos os nossos serviços.
                         </p>
-                        <a href="/produtos" class="btn btn-primary">Cadastre seus produtos</a>
+                        <a href="/home" class="btn btn-primary">Cadastre-se</a>
                     </div>
                 </div>
                 <div class="card border border-primary">
                     <div class="card-body">
-                        <h5 class="card-title">Cadastro de Categorias</h5>
+                        <h5 class="card-title">Voos</h5>
                         <p class="card=text">
-                            Cadastre as categorias dos seus produtos
+                            Vizualize nossos destinos.
                         </p>
-                        <a href="/categorias" class="btn btn-primary">Cadastre suas categorias</a>
+                        <a href="/voo" class="btn btn-primary">Vizualizar</a>
                     </div>
                 </div>
             </div>

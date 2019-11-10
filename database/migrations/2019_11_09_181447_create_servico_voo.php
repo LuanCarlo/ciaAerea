@@ -18,8 +18,8 @@ class CreateServicoVoo extends Migration
             $table->string('descricao');
             $table->integer('servico_id')->unsigned();
             $table->integer('passagem_id')->unsigned();
-            $table->foreign('servico_id')->references('id')->on('servicos');
-            $table->foreign('passagem_id')->references('id')->on('passagens');
+            $table->foreign('servico_id')->references('id')->on('servicos')->onDelete('cascade');;
+            $table->foreign('passagem_id')->references('id')->on('passagens')->onDelete('cascade');;
             $table->timestamps();
         });
     }

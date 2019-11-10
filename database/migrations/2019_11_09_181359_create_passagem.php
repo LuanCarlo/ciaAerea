@@ -22,8 +22,8 @@ class CreatePassagem extends Migration
             $table->float('preco');
             $table->integer('cliente_id')->unsigned()->nullable();
             $table->integer('voo_id')->unsigned()->nullable();
-            $table->foreign('cliente_id')->references('id')->on('users');
-            $table->foreign('voo_id')->references('id')->on('voos');
+            $table->foreign('cliente_id')->references('id')->on('users')->onDelete('cascade');;
+            $table->foreign('voo_id')->references('id')->on('voos')->onDelete('cascade');;
 
             $table->timestamps();
         });

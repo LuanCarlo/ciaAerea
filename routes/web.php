@@ -11,9 +11,7 @@
 |
 */
 
-Route::get('/', function () {
-    return view('index');
-});
+Route::get('/', 'VooCtrl@index');
 
 
 Route::get('/cliente', 'ClienteCtrl@index');
