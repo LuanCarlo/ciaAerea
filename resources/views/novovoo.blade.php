@@ -11,7 +11,7 @@
                 </div>
                 <div class="form-group">
                     <label for="dataVoo">Data do Voo</label>
-                    <input type="date" class="form-control" name="dataVoo" id="dataVoo" placeholder="Data do Voo">
+                    <input type="datetime-local" class="form-control" name="dataVoo" id="dataVoo" placeholder="Data do Voo">
                 </div>
                 <button type="submit" class="btn btn-primary btn-sm">Salvar</button>
                 <a type="cancel" class="btn btn-danger btn-sm" href="/voo" >cancelar</a>

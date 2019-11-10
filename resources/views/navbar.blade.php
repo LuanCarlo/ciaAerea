@@ -4,9 +4,6 @@
             <li @if($current="home") class="nav-item active" @else class="nav-item" @endif>
                 <a class="nav-link" href="/">Home <span class="sr-only">(current)</span></a>
             </li>
-            <li @if($current="passagem") class="nav-item active" @else class="nav-item" @endif>
-                <a class="nav-link" href="/passagem">Passagem <span class="sr-only">(current)</span></a>
-            </li>
             <li @if($current="servico") class="nav-item active" @else class="nav-item" @endif>
                 <a class="nav-link" href="/servico">Serviços <span class="sr-only">(current)</span></a>
             </li>

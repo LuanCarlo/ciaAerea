@@ -13,6 +13,7 @@
                         <th>Destino</th>
                         <th>Data do Voo</th>
                         <th>Ações</th>
+                        <th></th>
                     </tr>
                     </thead>
                     <tbody>
@@ -24,6 +25,9 @@
                             <td>
                                 <a href="/voo/editar/{{$voo->id}}" class="btn btn-sm btn-primary">Editar</a>
                                 <a href="/voo/apagar/{{$voo->id}}" class="btn btn-sm btn-danger">Apagar</a>
+                            </td>
+                            <td>
+                                <a href="/passagem/novo" class="btn btn-sm btn-primary">+</a>
                             </td>
                         </tr>
                     @endforeach

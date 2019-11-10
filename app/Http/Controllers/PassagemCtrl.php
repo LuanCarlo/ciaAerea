@@ -26,6 +26,7 @@ class PassagemCtrl extends Controller
     public function create()
     {
         //
+        return view("novapassagem");
     }
 
     /**
@@ -37,10 +38,13 @@ class PassagemCtrl extends Controller
     public function store(Request $request)
     {
         $prod = new Passagem();
-        $prod->nome = $request->input('nome');
-        $prod->preco = $request->input('preco');
-        $prod->estoque = $request->input('estoque');
-        $prod->categoria_id = $request->input('categoria_id');
+        $prod->tipo = $request->input('tipoPassagem');
+        $prod->classe = $request->input('classePassagem');
+        $prod->assento = $request->input('assentoPassagem');
+        $prod->portao = $request->input('portaoPassagem');
+        $prod->preco = $request->input('precoPassagem');
+        $prod->voo_id = $request->input('vooPassagem');
+       // $prod->cliente_id = $request->input('clientePassagem');
         $prod->save();
         return json_encode($prod);
     }

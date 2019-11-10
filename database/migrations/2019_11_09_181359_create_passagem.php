@@ -15,10 +15,13 @@ class CreatePassagem extends Migration
     {
         Schema::create('passagens', function (Blueprint $table) {
             $table->increments('id');
-            $table->integer('tipo');
+            $table->integer('tipo')->nullable();
+            $table->integer('classe')->nullable();
+            $table->string('assento')->nullable();
+            $table->string('portao')->nullable();
             $table->float('preco');
-            $table->integer('cliente_id')->unsigned();
-            $table->integer('voo_id')->unsigned();
+            $table->integer('cliente_id')->unsigned()->nullable();
+            $table->integer('voo_id')->unsigned()->nullable();
             $table->foreign('cliente_id')->references('id')->on('clientes');
             $table->foreign('voo_id')->references('id')->on('voos');
 

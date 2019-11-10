@@ -24,7 +24,7 @@ Route::get('/cliente/editar/{id}', 'ClienteCtrl@edit');
 Route::post('/cliente/{id}', 'ClienteCtrl@update');
 Route::get('/passagem', 'PassagemCtrl@indexView');
 Route::get('/passagem/novo', 'PassagemCtrl@create');
-Route::post('/passagem', 'PassagemCtrl@store');
+Route::post('/passagem/save', 'PassagemCtrl@store');
 Route::get('/passagem/apagar/{id}', 'PassagemCtrl@destroy');
 Route::get('/passagem/editar/{id}', 'PassagemCtrl@edit');
 Route::post('/passagem/{id}', 'PassagemCtrl@update');
