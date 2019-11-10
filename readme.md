@@ -12,7 +12,7 @@ Desenvolvido na linguagem PHP 7, JQuery e MSQL, juntamenta com o Framework Larav
 
 --------------------------------------------------------------------------------------------------------------------------------------
 
-#### Modo de uso 
+### Modo de uso 
 
 Primeiramente é necessário instalar o Laravel 5.8 no localhost ou servidor;
 Criar uma Database com o nome "cia_aerea" no formato utf8_general_ci;
