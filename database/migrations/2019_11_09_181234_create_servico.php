@@ -17,6 +17,7 @@ class CreateServico extends Migration
             $table->increments('id');
             $table->string('nome');
             $table->string('descricao');
+            $table->float('preco');
             $table->timestamps();
         });
     }

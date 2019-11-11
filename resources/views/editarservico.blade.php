@@ -17,6 +17,12 @@
                         <input type="text" class="form-control" name="descricaoServico" id="descricaoServico"
                                value="{{$servico->descricao}}" placeholder="Descrição">
                     </div>
+
+                    <div class="form-group">
+                        <label for="descricaoServico">Preço</label>
+                        <input type="text" class="form-control" name="precoServico" id="precoServico"
+                               value="{{$servico->preco}}" placeholder="Preço">
+                    </div>
                 </div>
                 <button type="submit" class="btn btn-primary btn-sm">Salvar</button>
                 <button type="cancel" class="btn btn-danger btn-sm">Cancel</button>

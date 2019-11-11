@@ -41,6 +41,7 @@ class ServicoCtrl extends Controller
         $servico = new Servico();
         $servico->nome = $request->input('nomeServico');
         $servico->descricao = $request->input('descricaoServico');
+        $servico->preco = $request->input('precoServico');
         $servico->save();
         return redirect('/servico');
     }
@@ -85,6 +86,7 @@ class ServicoCtrl extends Controller
         if(isset($servico)) {
             $servico->nome = $request->input('nomeServico');
             $servico->descricao = $request->input('descricaoServico');
+            $servico->preco = $request->input('precoServico');
             $servico->save();
         }
         return redirect('/servico');

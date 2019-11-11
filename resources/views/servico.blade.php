@@ -11,6 +11,7 @@
                     <tr>
                         <th>Código</th>
                         <th>Nome do servico</th>
+                        <th>Preço</th>
                         <th>Ações</th>
                     </tr>
                     </thead>
@@ -19,6 +20,7 @@
                         <tr>
                             <td>{{$servico->id}}</td>
                             <td>{{$servico->nome}}</td>
+                            <td>{{$servico->preco}}</td>
                             <td>
                                 <a href="/servico/editar/{{$servico->id}}" class="btn btn-sm btn-primary">Editar</a>
                                 <a href="/servico/apagar/{{$servico->id}}" class="btn btn-sm btn-danger">Apagar</a>

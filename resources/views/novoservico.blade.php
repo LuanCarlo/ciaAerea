@@ -13,6 +13,10 @@
                     <label for="descricaoServico">Descrição</label>
                     <input type="text" class="form-control" name="descricaoServico" id="descricaoServico" placeholder="Descrição">
                 </div>
+                <div class="form-group">
+                    <label for="descricaoServico">Preço</label>
+                    <input type="text" class="form-control" name="precoServico" id="precoServico" placeholder="Preço">
+                </div>
                 <button type="submit" class="btn btn-primary btn-sm">Salvar</button>
                 <a type="cancel" class="btn btn-danger btn-sm" href="/servico" >cancelar</a>
             </form>
